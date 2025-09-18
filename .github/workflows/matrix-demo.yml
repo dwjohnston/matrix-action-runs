@@ -9,17 +9,18 @@ jobs:
   matrix-job:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         a: ["foo", "bar"]
         b: ["quiz", "qax"]
-    
+
     steps:
       - name: Echo matrix pair
         run: |
           echo "Matrix pair: ${{ matrix.a }}/${{ matrix.b }}"
           echo "a=${{ matrix.a }}"
           echo "b=${{ matrix.b }}"
-      
+
       - name: Conditional failure for bar/qax
         run: |
           if [[ "${{ matrix.a }}" == "bar" && "${{ matrix.b }}" == "qax" ]]; then
