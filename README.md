@@ -1,6 +1,15 @@
 Demonstrates how to do a status check for matrix jobs, where you don't want to have to individually set the status check rules in github. 
 
 
+The problem is for a matrix job, you'd otherwise have to individually set the status checks for each permutation of the matrix. 
+
+See discussions on the topic: 
+https://github.com/orgs/community/discussions/26822
+https://github.com/orgs/community/discussions/60792
+
+
+
+
 
 # Matrix Action Runs Demo
 
