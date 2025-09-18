@@ -1,3 +1,7 @@
+Demonstrates how to do a status check for matrix jobs, where you don't want to have to individually set the status check rules in github. 
+
+
+
 # Matrix Action Runs Demo
 
 This repository demonstrates GitHub Actions matrix jobs with conditional failure.
@@ -45,3 +49,4 @@ In your repository settings:
 5. Do NOT select individual matrix job status checks (e.g., "matrix-job (bar, qax)")
 
 This gives you a single, reliable status check that represents the overall health of your matrix builds.
+
