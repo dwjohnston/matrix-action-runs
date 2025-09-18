@@ -1,0 +1,30 @@
+name: Matrix Demo
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  matrix-job:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        a: ["foo", "bar"]
+        b: ["quiz", "qax"]
+    
+    steps:
+      - name: Echo matrix pair
+        run: |
+          echo "Matrix pair: ${{ matrix.a }}/${{ matrix.b }}"
+          echo "a=${{ matrix.a }}"
+          echo "b=${{ matrix.b }}"
+      
+      - name: Conditional failure for bar/qax
+        run: |
+          if [[ "${{ matrix.a }}" == "bar" && "${{ matrix.b }}" == "qax" ]]; then
+            echo "This is the bar/qax combination - failing as expected"
+            exit 1
+          else
+            echo "This combination (${{ matrix.a }}/${{ matrix.b }}) should pass"
+          fi
