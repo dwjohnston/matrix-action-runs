@@ -29,3 +29,22 @@ jobs:
           else
             echo "This combination (${{ matrix.a }}/${{ matrix.b }}) should pass"
           fi
+
+  # Summary job that succeeds only if all matrix jobs succeed
+  # This provides a single status check for branch protection rules
+  check:
+    runs-on: ubuntu-latest
+    needs: matrix-job
+    if: always()
+    steps:
+      - name: Check matrix job results
+        run: |
+          echo "Checking matrix job results..."
+          echo "Matrix job result: ${{ needs.matrix-job.result }}"
+          if [[ "${{ needs.matrix-job.result }}" == "success" ]]; then
+            echo "✅ All matrix jobs completed successfully!"
+            exit 0
+          else
+            echo "❌ One or more matrix jobs failed"
+            exit 1
+          fi
